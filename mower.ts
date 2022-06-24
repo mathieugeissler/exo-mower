@@ -49,7 +49,7 @@ export class Mower {
             switch (command) {
                 case 'L':
                 case 'R':
-                    this.position = this.rotate(currentPosition, command);
+                    this.position = Mower.rotate(currentPosition, command);
                     break;
                 case 'M':
                     this.position = Mower.move(currentPosition);
@@ -84,9 +84,9 @@ export class Mower {
         return currentPosition;
     }
 
-    private rotate(currentPosition: MowerPosition, command: 'R' | 'L'): MowerPosition {
+    private static rotate(currentPosition: MowerPosition, command: 'R' | 'L'): MowerPosition {
         // convert current orientation letter to degrees and determine if we increment or decrement the degrees
-        const rotateTo = command === "R" ? OrientationToDegrees[this.position.orientation] + 90 : OrientationToDegrees[this.position.orientation] - 90;
+        const rotateTo = command === "R" ? OrientationToDegrees[currentPosition.orientation] + 90 : OrientationToDegrees[currentPosition.orientation] - 90;
         // convert degrees to orientation
         const orientation = DirectionUtils.getDirectionFromDegrees(rotateTo);
 
